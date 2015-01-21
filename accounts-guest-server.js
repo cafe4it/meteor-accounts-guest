@@ -31,8 +31,9 @@ Meteor.methods({
       profile: {guest: true},
       password: Meteor.uuid(),
     };
-    Accounts.createUser(guest);
+    var guestId = Accounts.createUser(guest);
 //    console.log("createGuest" + guestname);
+    Roles.addUsersToRoles(guestId, ["guest"]);
     return guest;
   }
 });
